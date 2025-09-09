@@ -4,12 +4,29 @@ Version: 0.9, 02.03.2025, (c)Airrr(r).
   
 &nbsp;  
   
+This is a new alternative firmware for controlling two relays module.  
+User-friendly responses from the controller are now available.  
+*You can get even more info through the serial interface!*  if DEBUG var is enabled.  
+Up to 7 users can control the device (slots: AB01234).  
+"A" and "B" are the same, them can do everything.  
+"0" can change (replace) slots 1 to 4.  
+"1" "2" "3" "4" can only control the relays.  
+  
+Make sure you have enough SMS credits, or you'll get an error like:  
+**Some GSM ERROR. Check with your provider. (out of SMSes?)** via serial only as i'ts out of SMSes...  
+  
+ 
+Send the "help" command to receive assistance.  
+Almost no soldering is required - just a few pin connections.  
+Connect an ST-LINK, flash the provided HEX file (or compile your own), and then follow the instructions.  
+  
+&nbsp;  
 Tested on "DIYMall UNV v3.2-2018.10-11" blue board like this:  
-[![click for full size](pic_s.jpg)](pic_b.jpg)  
+[![click for full size](PIC/pic_s.jpg)](PIC/pic_b.jpg)  
   
 &nbsp;  
   
-To activate the unit send SMS "activate" first. **This number will become super admin (slot A).**  
+To activate the unit send SMS "activate" first. **This number will be assigned as the super admin (slot "A").**  
 Then SMS "help" for the list of commands:  
   
 |SMS command:|Help|  
@@ -29,7 +46,7 @@ Then SMS "help" for the list of commands:
 To remove unwanted namber just replace him with dummy phone number like (+000000000000). (Super admins\admin only!)  
   
 &nbsp;  
-  
+**Users:**  
 Super admin (slots A and B) can do everything.  
 Admin (slot 0) can change and see numbers for 0-4 only.  
 Users (slots 1-4) cannot change or see any phone numbers.  
@@ -37,7 +54,10 @@ Everyone can control the relays of course.
   
 &nbsp;  
   
-Tie LOG pin to GND at startup to force device reformat (all 0). Wait and then activate with your phone #.  
+**Reseting to defaults:**  
+Tie LOG pin to GND at power on **OR** send "resetall" SMS command **OR** send "format" via serial.  
+Wait about minute or two, both LEDs will flash somehow here or there until both will flash very fast :)  
+Then power off and on! Activate with your phone #.  
   
 PA9  pin - TX  Debug port: a LOT of information! May be parsed and used by another microcontroller to act somehow.  
 PA10 pin - RX  @115200 3.3v  
@@ -61,6 +81,6 @@ Use ST-LINK to upload the firmware (swclk, swdio).
   
 Screens:  
   
-![scr](scr_sms1.jpg)
-![scr](scr_sms2.jpg)
-![scr](scr_sms3.jpg)
+![scr](PIC/scr_sms1.jpg)
+![scr](PIC/scr_sms2.jpg)
+![scr](PIC/scr_sms3.jpg)
